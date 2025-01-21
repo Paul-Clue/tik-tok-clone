@@ -7,6 +7,15 @@
   --foreground: #171717;
 }
 
+.snap-y::-webkit-scrollbar {
+  display: none;
+}
+
+.snap-y {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -18,4 +27,17 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
+
+/* .video-container {
+  @apply w-[350px] h-[calc(100vh-120px)] relative bg-black;
+} */
+
+/* @media (min-width: 768px) {
+  .video-container {
+    @apply w-[400px];
+  }
+} */

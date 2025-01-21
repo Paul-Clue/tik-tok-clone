@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mux/mux-node": "^9.0.1",
+    "@prisma/client": "^6.2.1",
     "next": "15.1.5",
     "next-video": "^2.0.0",
     "react": "^19.0.0",
