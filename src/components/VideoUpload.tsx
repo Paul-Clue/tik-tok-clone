@@ -25,7 +25,6 @@ export default function VideoUpload() {
       const data = await response.json();
       console.log('Upload successful:', data);
       
-      // Optionally refresh the video list
       window.location.reload();
     } catch (error) {
       console.error('Upload error:', error);

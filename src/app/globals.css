@@ -31,13 +31,3 @@ body {
   margin: 0;
   padding: 0;
 }
-
-/* .video-container {
-  @apply w-[350px] h-[calc(100vh-120px)] relative bg-black;
-} */
-
-/* @media (min-width: 768px) {
-  .video-container {
-    @apply w-[400px];
-  }
-} */

@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { createMuxAsset } from '../../../lib/mux';
-// import Mux from '@mux/mux-node';
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
@@ -17,10 +16,18 @@ export async function POST(request: Request) {
       );
     }
 
-    // Upload to Mux
     const { playbackId, assetId } = await createMuxAsset(videoFile);
 
-    // Create video record in database
+    let user = await prisma.user.findFirst();
+    if (!user) {
+      user = await prisma.user.create({
+        data: {
+          name: 'Default User1',
+          email: 'default1@example.com',
+        },
+      });
+    }
+
     const video = await prisma.video.create({
       data: {
         name: name || videoFile.name,
@@ -31,18 +38,19 @@ export async function POST(request: Request) {
           mux: {
             assetId,
             playbackId,
-          }
+          },
         },
         size: videoFile.size,
-        sources: [{
-          src: `https://stream.mux.com/${playbackId}.m3u8`,
-          type: 'application/x-mpegURL'
-        }],
-        userId: 1, // Replace with actual user ID from auth
+        sources: [
+          {
+            src: `https://stream.mux.com/${playbackId}.m3u8`,
+            type: 'application/x-mpegURL',
+          },
+        ],
+        userId: user.id,
       },
     });
-
-    return NextResponse.json(video);
+    return NextResponse.json({ ...video, message: 'Video processing started' });
   } catch (error) {
     console.error('Upload error:', error);
     return NextResponse.json(
