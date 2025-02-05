@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.11.0",
     "@mux/mux-node": "^9.0.1",
     "@mux/mux-player": "^3.2.4",
     "@mux/mux-player-react": "^3.2.4",

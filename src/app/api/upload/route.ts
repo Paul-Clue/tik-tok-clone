@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { createMuxAsset } from '../../../lib/mux';
+// import { auth } from '@clerk/nextjs/server';
 const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
